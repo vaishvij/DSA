@@ -11,16 +11,22 @@ public:
     ListNode *detectCycle(ListNode *head) 
     {
         if(head==NULL || head->next==NULL) return nullptr;
-        map<ListNode*,int> visited;
-        ListNode* temp = head;
-        while(temp)
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast!=NULL && fast->next!=NULL)
         {
-            if(visited.count(temp) != 0)
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast)
             {
-                return temp;
+                slow = head;
+                while(slow != fast)
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
             }
-            visited[temp] = 1;
-            temp = temp->next;
         }
         return nullptr;
     }
