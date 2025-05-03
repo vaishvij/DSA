@@ -11,15 +11,15 @@ public:
     bool hasCycle(ListNode *head) 
     {
         if(head==NULL || head->next==NULL) return false;
+        map<ListNode*,bool> visited;
         ListNode* temp = head;
-        while(temp!=NULL && temp->next!=NULL)
+        while(temp)
         {
-            temp->val = INT_MIN;
-            if(temp->next->val == INT_MIN)
+            if(visited[temp]==true)
             {
                 return true;
-                break;
             }
+            visited[temp] = true;
             temp = temp->next;
         }
         return false;
