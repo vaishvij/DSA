@@ -1,23 +1,23 @@
 class Solution {
 public:
+    void reverse(vector<int>& nums, int start, int end)
+    {
+        while (start <= end)
+        {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
     void rotate(vector<int>& nums, int k) 
     {
-        vector<int> extra;
         int s = nums.size();
         int r = k%s;
-        int point = s-r;
-        for(int i=point; i<s; i++)
-        {
-            extra.push_back(nums[i]);
-        }
-        for(int i=0; i<point; i++)
-        {
-            extra.push_back(nums[i]);
-        }
-        nums.clear();
-        for(int i=0; i<extra.size(); i++)
-        {
-            nums.push_back(extra[i]);
-        }
+        reverse(nums,0,s-r-1);
+        reverse(nums,s-r,s-1);
+        reverse(nums,0,s-1);
     }
 };
