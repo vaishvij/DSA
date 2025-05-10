@@ -2,11 +2,16 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) 
     {
-        int number=0;
-        sort(nums.begin(),nums.end());
-        for(int i=0; i<nums.size(); i++)
+        int n=nums.size();
+        vector<int> hash(n+1,0);
+        for(int i=0; i<n; i++)
         {
-            if(nums[i] != number)
+            hash[nums[i]] = 1;
+        }
+        int number=0;
+        for(int i=0; i<n; i++)
+        {
+            if(hash[i] != 1)
             {
                 return number;
                 break;
