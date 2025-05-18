@@ -8,7 +8,7 @@ public:
 
         for(int i=0; i<n; i++)
         {
-            //if(i>0 && nums[i]==nums[i-1]) continue;
+            if(i>0 && nums[i]==nums[i-1]) continue;
             int low = i+1;
             int high = n-1;
             while(low < high)
