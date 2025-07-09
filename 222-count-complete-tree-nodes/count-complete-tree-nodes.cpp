@@ -11,25 +11,17 @@
  */
 class Solution {
 public:
+    int inOrderCount(TreeNode* node, int &ans)
+    {
+        ans++;
+        if(node->left) inOrderCount(node->left, ans);
+        if(node->right) inOrderCount(node->right, ans);
+        return ans;
+    }
     int countNodes(TreeNode* root) 
     {
         int ans = 0;
-        queue<TreeNode*> q;
-        if(root == NULL) return 0;
-
-        q.push(root);
-        while(!q.empty())
-        {
-            int s = q.size();
-            for(int i=0; i<s; i++)
-            {
-                TreeNode* node = q.front();
-                q.pop();
-                ans++;
-                if(node->left) q.push(node->left);
-                if(node->right) q.push(node->right);
-            }
-        }
-        return ans;
+        if(root == NULL) return ans;
+        return inOrderCount(root,ans);
     }
 };
