@@ -11,17 +11,36 @@
  */
 class Solution {
 public:
-    int inOrderCount(TreeNode* node, int &ans)
+    int calcLeftHeight(TreeNode* node)
     {
-        ans++;
-        if(node->left) inOrderCount(node->left, ans);
-        if(node->right) inOrderCount(node->right, ans);
-        return ans;
+        int h=0;
+        while(node)
+        {
+            h++;
+            node = node->left;
+        }
+        return h;
+    }
+    int calcRightHeight(TreeNode* node)
+    {
+        int h=0;
+        while(node)
+        {
+            h++;
+            node = node->right;
+        }
+        return h;
     }
     int countNodes(TreeNode* root) 
     {
         int ans = 0;
         if(root == NULL) return ans;
-        return inOrderCount(root,ans);
+
+        int lh = calcLeftHeight(root);
+        int rh = calcRightHeight(root);
+
+        if(lh==rh) return (1<<lh)-1;
+
+        return 1 + countNodes(root->left) + countNodes(root->right);
     }
 };
