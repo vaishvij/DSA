@@ -9,7 +9,7 @@
  */
 class Solution {
 public:
-    void findParents(TreeNode* root, map<TreeNode*,TreeNode*> &parent_track)
+    void findParents(TreeNode* root, unordered_map<TreeNode*,TreeNode*> &parent_track)
     {
         queue<TreeNode*> q;
         q.push(root);
@@ -30,10 +30,10 @@ public:
     }
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) 
     {
-        map<TreeNode*,TreeNode*> parent_track;
+        unordered_map<TreeNode*,TreeNode*> parent_track;
         findParents(root, parent_track);
         queue<TreeNode*> traverse;
-        map<TreeNode*,bool> visited;
+        unordered_map<TreeNode*,bool> visited;
         int dist = 0;
 
         traverse.push(target);
