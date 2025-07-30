@@ -16,12 +16,12 @@ public:
         sum = sum + node->val;
 
         
-        /*if(!node->left && !node->right && sum != targetSum)
+        if(!node->left && !node->right && sum != targetSum)
         {
             sum = sum - node->val;
             return;
-        }*/ 
-        if(!node->left && !node->right && sum == targetSum)
+        }
+        else if(!node->left && !node->right && sum == targetSum)
         {
             found = true;
             return;
