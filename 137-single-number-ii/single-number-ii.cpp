@@ -2,14 +2,13 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) 
     {
-        sort(nums.begin(),nums.end());
+        int ones=0, twos=0;
 
-        int n = nums.size();
-        for(int i=1; i<nums.size(); i+=3)
+        for(int i=0; i<nums.size(); i++)
         {
-            if(nums[i] != nums[i-1])
-            return nums[i-1];
+            ones = (ones ^ nums[i]) & ~twos;
+            twos = (twos ^ nums[i]) & ~ones;
         }
-        return nums[n-1];
+        return ones;
     }
 };
