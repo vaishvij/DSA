@@ -2,16 +2,20 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) 
     {
-        map<int,int> freq;
-        for(int i=0; i<nums.size(); i++)
+        int ans = 0;
+        for(int bitInd=0; bitInd<32; bitInd++)
         {
-            freq[nums[i]]++;
+            int count=0;
+            for(int i=0; i<nums.size(); i++)
+            {
+                if(nums[i] & (1<<bitInd))
+                count++;
+            }
+            if(count%3 != 0)
+            {
+                ans = ans | (1<<bitInd);
+            }
         }
-        for(auto i : freq)
-        {
-            if(i.second == 1)
-            return i.first;
-        }
-        return -1;
+        return ans;
     }
 };
